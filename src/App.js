@@ -17,6 +17,7 @@ import InsertCarburant from './pages/InsertCarburant';
 import InsertModele from './pages/InsertModele';
 import Commission from './pages/Commission';
 import Statistique from './pages/Statistique';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/insertModele" element={<InsertModele />} />
           <Route exact path="/commission" element={<Commission />} />
           <Route exact path="/statistique" element={<Statistique />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
       </Router>
       <VendorScripts/>
