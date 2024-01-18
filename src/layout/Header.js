@@ -3,6 +3,8 @@ import logo from '../assets/img/omby.png';
 import { Link } from "react-router-dom";
 
 export default function Header() {
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
     return (
         <div>
         <header id="header" className="header fixed-top d-flex align-items-center">
@@ -46,13 +48,21 @@ export default function Header() {
                                 <hr className="dropdown-divider"/>
                             </li>
 
+                            {userId ? (
                             <li>
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <i className="bi bi-box-arrow-right"></i>
                                     <span>Deconnexion</span>
                                 </a>
                             </li>
-
+                            ) : (
+                            <li className="nav-item">
+                                <a className="dropdown-item d-flex align-items-center" href="#">
+                                    <i className="bi bi-box-arrow-right"></i>
+                                    <span>Se connecter</span>
+                                </a>
+                            </li>
+                            )}
                         </ul>
                     </li>
 
