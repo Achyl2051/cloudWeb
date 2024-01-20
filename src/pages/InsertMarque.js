@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function InsertMarque() {
+    const token = localStorage.getItem('token');
     let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -18,7 +19,11 @@ function InsertMarque() {
         e.preventDefault();
         const params = new URLSearchParams();
         params.append("nom", formData.nom);
-        await axios.post("http://localhost:8080/marque", params);
+        await axios.post("http://localhost:8080/marque", params, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         console.log(formData.nom);
         navigate("/");
       };

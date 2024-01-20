@@ -3,8 +3,10 @@ import logo from '../assets/img/omby.png';
 import { Link } from "react-router-dom";
 
 export default function Header() {
-    const userId = localStorage.getItem('userId');
+    const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
+    const admin = localStorage.getItem('admin');
+    const userId = JSON.parse(user);
     return (
         <div>
         <header id="header" className="header fixed-top d-flex align-items-center">
@@ -42,23 +44,26 @@ export default function Header() {
 
                         <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li className="dropdown-header">
-                                <span>Admin</span>
+                                <span>Connection</span>
                             </li>
                             <li>
                                 <hr className="dropdown-divider"/>
                             </li>
-
-                            {userId ? (
+                            {user ? (
                             <li>
-                                <a className="dropdown-item d-flex align-items-center" href="#">
-                                    <i className="bi bi-box-arrow-right"></i>
+                                <a className="dropdown-item d-flex align-items-center" href="/deconnexion">
+                                    <i className="bi bi-box-arrow-in-right"></i>
                                     <span>Deconnexion</span>
                                 </a>
                             </li>
                             ) : (
                             <li className="nav-item">
-                                <a className="dropdown-item d-flex align-items-center" href="#">
-                                    <i className="bi bi-box-arrow-right"></i>
+                                <a className="dropdown-item d-flex align-items-center" href="/loginAdmin">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                    <span>Se connecter en tant qu'Admin</span>
+                                </a>
+                                <a className="dropdown-item d-flex align-items-center" href="/login">
+                                    <i class="bi bi-box-arrow-in-left"></i>
                                     <span>Se connecter</span>
                                 </a>
                             </li>
@@ -81,38 +86,46 @@ export default function Header() {
                         <span>Accueil</span>
                     </a>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/commission">
+                
+                {admin ? (
+                <>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/commission">
                         <i className="bi bi-calculator"></i><span>Services</span>
                     </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/statistique">
-                    <i class="bi bi-bar-chart-line"></i><span>Statistique</span>
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/statistique">
+                        <i className="bi bi-bar-chart-line"></i><span>Statistique</span>
                     </a>
-                </li>
-                
-                <li className="nav-heading">Creation simple</li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/insertCategorie">
+                    </li>
+                    <li className="nav-heading">Creation simple</li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/insertCategorie">
                         <i className="bi bi-person-plus"></i><span>Ajout categorie</span>
                     </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/insertMarque">
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/insertMarque">
                         <i className="bi bi-person-plus"></i><span>Ajout marque</span>
                     </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/insertCarburant">
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/insertCarburant">
                         <i className="bi bi-person-plus"></i><span>Ajout carburant</span>
                     </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link collapsed"  href="/insertModele">
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/insertModele">
                         <i className="bi bi-person-plus"></i><span>Ajout modele</span>
                     </a>
+                    </li>
+                </>
+                ) : (
+                <li className="nav-item">
+                    <span className="nav-link">Veuillez vous connecter en tant qu'admin</span>
                 </li>
+                )}
             </ul>
 
         </aside>

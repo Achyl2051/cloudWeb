@@ -18,6 +18,8 @@ import InsertModele from './pages/InsertModele';
 import Commission from './pages/Commission';
 import Statistique from './pages/Statistique';
 import Login from './pages/Login';
+import LoginAdmin from './pages/LoginAdmin';
+import Deconnexion from './pages/Deconnexion';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route exact path="/commission" element={<Commission />} />
           <Route exact path="/statistique" element={<Statistique />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/loginAdmin" element={<LoginAdmin />} />
+          <Route exact path="/deconnexion" element={<Deconnexion />} />
         </Routes>
       </Router>
       <VendorScripts/>

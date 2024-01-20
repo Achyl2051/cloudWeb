@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Commission() {
+    const token = localStorage.getItem('token');
     const [commission,setCommission]=useState([]);
     const [caisse,setCaisse]=useState([]);
     useEffect(()=>{
@@ -9,11 +10,19 @@ function Commission() {
         loadCaisse();
     },[]);
     const loadCommission =async ()=>{
-        const result=await axios.get("http://localhost:8080/commissions");
+        const result=await axios.get("http://localhost:8080/commissions", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setCommission(result.data);
     }
     const loadCaisse =async ()=>{
-        const result=await axios.get("http://localhost:8080/venteannonce/commission");
+        const result=await axios.get("http://localhost:8080/venteannonce/commission", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setCaisse(result.data);
     }
 
@@ -31,7 +40,11 @@ function Commission() {
         e.preventDefault();
     
         try {
-            await axios.put("http://localhost:8080/commissions/1", formData);
+            await axios.put("http://localhost:8080/commissions/1", formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             loadCommission();
         } catch (error) {
             console.error("Error updating commission:", error);

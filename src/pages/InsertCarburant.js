@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function InsertCarburant() {
+    const token = localStorage.getItem('token');
     let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -18,7 +19,11 @@ function InsertCarburant() {
         e.preventDefault();
         const params = new URLSearchParams();
         params.append("nom", formData.nom);
-        await axios.post("http://localhost:8080/carburant", params);
+        await axios.post("http://localhost:8080/carburant", params, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         console.log(formData.nom);
         navigate("/");
       };

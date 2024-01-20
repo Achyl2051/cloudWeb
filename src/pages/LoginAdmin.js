@@ -12,13 +12,13 @@ import { useNavigate } from 'react-router-dom';
 // import '../assets/vendor/simple-datatables/style.css'
 // import '../assets/css/style.css'
 
-function Login() {
+function LoginAdmin() {
 
     let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-      mail: "jonathandry@gmail.com",
-      password: "jonathandry"
+      mail: "admin@gmail.com",
+      password: "admin"
     });
 
     const [error, setError] = useState(null);
@@ -35,14 +35,14 @@ function Login() {
           params.append("password", formData.password);
           const result = await axios.post("http://localhost:8080/auth/login", params);
           localStorage.setItem('token', result.data.token);
-          localStorage.setItem('user', JSON.stringify(result.data.userId));
           if(result.data.userId.id==1){
             localStorage.setItem('admin', "True");
           }
+          localStorage.setItem('user', JSON.stringify(result.data.userId));
           navigate("/");
           window.location.reload();
       } catch (error) {
-        setError("Veuillez verifier vos informations");
+          setError("Veuillez verifier vos informations");
       }
     };
     return (
@@ -64,7 +64,7 @@ function Login() {
                   <div class="card-body">
 
                     <div class="pt-4 pb-2">
-                      <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                      <h5 class="card-title text-center pb-0 fs-4">Se connecter en tant qu'ADMIN</h5>
                       <p class="text-center small">Vous devez vous connecter avant d'accéder à la page</p>
                     </div>
 
@@ -108,4 +108,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default LoginAdmin;

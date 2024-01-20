@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function InsertModele() {
+    const token = localStorage.getItem('token');
     let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -20,21 +21,33 @@ function InsertModele() {
     },[]);
 
     const loadMarque =async ()=>{
-        const result=await axios.get("http://localhost:8080/marques");
+        const result=await axios.get("http://localhost:8080/marques", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setMarque(result.data);
     }
 
     const [categorie,setCategorie]=useState([]);
 
     const loadCategorie =async ()=>{
-        const result=await axios.get("http://localhost:8080/categories");
+        const result=await axios.get("http://localhost:8080/categories", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setCategorie(result.data);
     }
 
     const [carburant,setCarburant]=useState([]);
 
     const loadCarburant =async ()=>{
-        const result=await axios.get("http://localhost:8080/carburants");
+        const result=await axios.get("http://localhost:8080/carburants", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setCarburant(result.data);
     }
     
@@ -75,7 +88,11 @@ function InsertModele() {
         params.append("nom", formData.nom);
         params.append("idCategories", formData.idCategories);
         params.append("idCarburants", formData.idCarburants);
-        await axios.post("http://localhost:8080/modeles", params);
+        await axios.post("http://localhost:8080/modeles", params, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         navigate("/");
       };
 

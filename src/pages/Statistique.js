@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Statistique() {
+    const token = localStorage.getItem('token');
     const [formData, setFormData] = useState([]);
     const [cat, setResult] = useState({
         idCategorie:"",
@@ -10,15 +11,27 @@ function Statistique() {
     const [tableau, setTableau] = useState([]);
     
     const loadMarque = async () => {
-        const result = await axios.get("http://localhost:8080/venteannonce/marques");
+        const result = await axios.get("http://localhost:8080/venteannonce/marques", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setTableau(result.data);
     }
     const loadBoite = async () => {
-        const result = await axios.get("http://localhost:8080/venteannonce/boites");
+        const result = await axios.get("http://localhost:8080/venteannonce/boites", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setTableau(result.data);
     }
     const loadCarburant = async () => {
-        const result = await axios.get("http://localhost:8080/venteannonce/carburants");
+        const result = await axios.get("http://localhost:8080/venteannonce/carburants", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setTableau(result.data);
     }    
     
@@ -34,13 +47,21 @@ function Statistique() {
     }, [cat.idCategorie]);
 
     const loadFormData = async () => {
-        const result = await axios.get("http://localhost:8080/categories");
+        const result = await axios.get("http://localhost:8080/categories", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setFormData(result.data);
     }
 
     const loadCategorie = async (selectedCategoryId) => {
         try {
-            const result = await axios.get(`http://localhost:8080/venteannonce/categories?idCategorie=${selectedCategoryId}`);
+            const result = await axios.get(`http://localhost:8080/venteannonce/categories?idCategorie=${selectedCategoryId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setTableau(result.data);
         } catch (error) {
             console.error("Error fetching data:", error);
