@@ -91,7 +91,12 @@ export default function Header() {
                 <>
                     <li className="nav-item">
                     <a className="nav-link collapsed" href="/commission">
-                        <i className="bi bi-calculator"></i><span>Services</span>
+                        <i className="bi bi-calculator"></i><span>Commission</span>
+                    </a>
+                    </li>
+                    <li className="nav-item">
+                    <a className="nav-link collapsed" href="/validationannonce">
+                        <i className="bi bi-check"></i><span>Validation Annonce</span>
                     </a>
                     </li>
                     <li className="nav-item">

@@ -35,7 +35,7 @@ function LoginAdmin() {
           params.append("password", formData.password);
           const result = await axios.post("http://localhost:8080/auth/login", params);
           localStorage.setItem('token', result.data.token);
-          if(result.data.userId.id==1){
+          if(result.data.userId.nom=="Admin"){
             localStorage.setItem('admin', "True");
           }
           localStorage.setItem('user', JSON.stringify(result.data.userId));

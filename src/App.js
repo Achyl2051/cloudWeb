@@ -20,6 +20,7 @@ import Statistique from './pages/Statistique';
 import Login from './pages/Login';
 import LoginAdmin from './pages/LoginAdmin';
 import Deconnexion from './pages/Deconnexion';
+import ValidationAnnonce from './pages/ValidationAnnonce';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/loginAdmin" element={<LoginAdmin />} />
           <Route exact path="/deconnexion" element={<Deconnexion />} />
+          <Route exact path="/validationannonce" element={<ValidationAnnonce />} />
         </Routes>
       </Router>
       <VendorScripts/>
